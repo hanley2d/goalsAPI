@@ -1,8 +1,8 @@
 const express = require('express');
 const colors = require('colors');
 const dotenv = require('dotenv').config();
-const {errorHandler} = require('./middleware/errorMiddleware');
-const connectDB = require('./config/db'); 
+const { errorHandler } = require('./middleware/errorMiddleware');
+const connectDB = require('./config/db');
 const port = process.env.PORT || 5000;
 
 connectDB();
@@ -10,10 +10,11 @@ connectDB();
 const app = express();
 
 // middleware
-app.use(express.urlencoded({extended: false}));
+app.use(express.urlencoded({ extended: false }));
 
 // routes
 app.use('/api/goals', require('./routes/goalRoutes'));
+app.use('/api/users', require('./routes/userRoutes'));
 
 // error handler - overwrites default error handler
 app.use(errorHandler);
